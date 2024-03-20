@@ -2,13 +2,13 @@ package modelo;
 
 public class Vehiculo {
 	
-	private String matricula;
-	private String modelo;
-	private String marca;
-	private float kmRecorridos;
-	private float precioDia;
-	private String tipoMotor;
-	private boolean alquilado;
+	protected String matricula;
+	protected String modelo;
+	protected String marca;
+	protected float kmRecorridos;
+	protected float precioDia;
+	protected String tipoMotor;
+	protected boolean alquilado;
 	
 	public Vehiculo(String matricula, String modelo, String marca, float kmRecorridos, float precioDia,
 			String tipoMotor) {
@@ -74,9 +74,21 @@ public class Vehiculo {
 	public boolean isAlquilado() {
 		return alquilado;
 	}
-
-	public void setAlquilado(boolean alquilado) {
-		this.alquilado = alquilado;
+	
+	public void setAlquilado() {
+		this.alquilado = true;
+	}
+	
+	public float calcularPrecioACobrar(float kmsDeMas, int dias) {
+		float resultado = 0.0f;
+		
+		this.kmRecorridos+=kmsDeMas;
+		resultado = dias * this.precioDia;
+		if (kmsDeMas/dias> 500) {
+			resultado *= 1.2;
+		}
+		this.alquilado = false;
+		return resultado;
 	}
 	
 }
