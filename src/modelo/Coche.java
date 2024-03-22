@@ -2,7 +2,6 @@ package modelo;
 
 public class Coche extends Vehiculo {
 	
-	//Atributos
 	public enum TipoCoche {
 		utilitario,
 		berlina,
