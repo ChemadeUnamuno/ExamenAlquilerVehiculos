@@ -2,14 +2,16 @@ package modelo;
 
 public class Furgon extends Vehiculo {
 	
-	private float cargaMaxima;
-	private int plazas;
+	protected float cargaMaxima;
+	protected int plazas;
 	
 	public Furgon(String matricula, String modelo, String marca, float kmRecorridos, float precioDia, String tipoMotor,
 			float cargaMaxima, int plazas) {
+		
 		super(matricula, modelo, marca, kmRecorridos, precioDia, tipoMotor);
 		this.cargaMaxima = cargaMaxima;
 		this.plazas = plazas;
+		
 	}
 
 	public float getCargaMaxima() {
