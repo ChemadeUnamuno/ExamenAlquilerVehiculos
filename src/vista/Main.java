@@ -1,5 +1,7 @@
 package vista;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import modelo.Camion;
@@ -144,18 +146,17 @@ public class Main {
             	System.out.println("Introduce los KM recorridos");
         		respuesta = sc.nextLine();
         		Float kmRecorridos = Float.valueOf(respuesta);
+        		System.out.println("Introduce los días utilizados");
+        		respuesta = sc.nextLine();
+        		int dias = Integer.valueOf(respuesta);
             	Reserva r = crearReserva(sc, matricula, dni);
-            	
-            	if (respuesta.compareToIgnoreCase("Coche") == 0) {
-            		
-            		float precio = miEmpresa.devolverVehiculo(r,kmRecorridos);
-                	if (precio>0) {
-                		System.out.println("¡Devolución realizada correctamente!");
-                		System.out.println("Precio: " + precio);
-                	} else {
-                		System.out.println("¡La devolución no ha podido realizarse!");
-                	}
-            	}
+            	float precio = miEmpresa.devolverVehiculo(r,kmRecorridos,dias);
+                if (precio>0) {
+                	System.out.println("¡Devolución realizada correctamente!");
+                	System.out.println("Precio: " + precio);
+                } else {
+                	System.out.println("¡La devolución no ha podido realizarse!");
+                }
             		
             } else {
             	
@@ -363,14 +364,13 @@ public class Main {
 	
 	public static Reserva crearReserva(Scanner sc,String matricula,String dni) {
 		
-		int diasAlquilados;
-		String fechaInicio;
-    	
+		System.out.println("Introduce la fecha de inicio dd/MM/yyyy");
+		String respuesta;
+		respuesta = sc.nextLine();
+		LocalDate fechaInicio = LocalDate.parse(respuesta, DateTimeFormatter.ofPattern("d/M/yyyy"));
 		System.out.println("Introduce los días alquilados");
-		fechaInicio = sc.nextLine();
-		diasAlquilados = Integer.valueOf(fechaInicio);
-		System.out.println("Introduce la fecha de inicio");
-		fechaInicio = sc.nextLine();
+		respuesta = sc.nextLine();
+		int diasAlquilados = Integer.valueOf(respuesta);
 		
 		return new Reserva(matricula,dni,diasAlquilados,fechaInicio);
 		

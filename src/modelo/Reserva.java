@@ -1,13 +1,15 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class Reserva {
 	
 	private String matricula;
 	private String dni;
 	private int diasAlquilados;
-	private String fechaInicio;
+	private LocalDate fechaInicio;
 	
-	public Reserva(String matricula, String dni, int diasAlquilados, String fechaInicio) {
+	public Reserva(String matricula, String dni, int diasAlquilados, LocalDate fechaInicio) {
 		
 		this.matricula = matricula;
 		this.dni = dni;
@@ -40,11 +42,11 @@ public class Reserva {
 		this.diasAlquilados = diasAlquilados;
 	}
 
-	public String getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(String fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 	

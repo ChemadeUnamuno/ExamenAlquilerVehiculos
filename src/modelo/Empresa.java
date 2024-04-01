@@ -72,11 +72,11 @@ public class Empresa {
 		return false;
 	}
 	
-	public float devolverVehiculo(Reserva r, float KM) {
+	public float devolverVehiculo(Reserva r, float KM, int dias) {
 		if(r!=null) {
 			if(buscarReserva(r.getMatricula(),r.getDni()) != null) {
 				misReservas.remove(r);
-				return buscarVehiculo(r.getMatricula()).calcularPrecioACobrar(KM, r.getDiasAlquilados());
+				return buscarVehiculo(r.getMatricula()).calcularPrecioACobrar(r, KM, dias);
 			}
 		}
 		return 0f;

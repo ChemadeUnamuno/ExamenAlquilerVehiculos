@@ -79,13 +79,17 @@ public class Vehiculo {
 		this.alquilado = true;
 	}
 	
-	public float calcularPrecioACobrar(float kmsDeMas, int dias) {
+	public float calcularPrecioACobrar(Reserva r, float kmsDeMas, int dias) {
 		float resultado = 0.0f;
-		
-		this.kmRecorridos+=kmsDeMas;
-		resultado = dias * this.precioDia;
-		if (kmsDeMas/dias> 500) {
+		kmRecorridos+=kmsDeMas;
+		resultado += r.getDiasAlquilados() * precioDia;
+		if (kmRecorridos/r.getDiasAlquilados()> 500) {
 			resultado *= 1.2;
+		}
+		if (r.getDiasAlquilados()<dias) {
+			int diferencia = dias-r.getDiasAlquilados();
+			resultado += (precioDia*1.5)*diferencia;
+			r.setDiasAlquilados(dias);
 		}
 		this.alquilado = false;
 		return resultado;
